@@ -1,0 +1,226 @@
+@import './App.scss';
+
+.task-card {
+    background-color: $card-bg;
+    border-radius: $border-radius;
+    padding: 1rem;
+    box-shadow: $shadow-sm;
+    transition: $transition;
+    cursor: pointer;
+    animation: slideIn 0.3s ease;
+
+    .dark-mode & {
+        background-color: $dark-card-bg;
+        border: 1px solid $dark-border;
+    }
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: $shadow-md;
+    }
+
+    &.completed {
+        opacity: 0.7;
+        background-color: rgba(16, 185, 129, 0.05);
+
+        .dark-mode & {
+            background-color: rgba(16, 185, 129, 0.1);
+        }
+    }
+
+    .task-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.75rem;
+        position: relative;
+
+        .task-priority {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+
+            .priority-indicator {
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+            }
+
+            .priority-text {
+                color: $text-light;
+
+                .dark-mode & {
+                    color: $dark-text-secondary;
+                }
+            }
+
+            .priority-high .priority-indicator {
+                background-color: $danger-color;
+            }
+
+            .priority-medium .priority-indicator {
+                background-color: $warning-color;
+            }
+
+            .priority-low .priority-indicator {
+                background-color: $success-color;
+            }
+        }
+
+        .more-actions-btn {
+            color: $text-light;
+
+            .dark-mode & {
+                color: $dark-text-secondary;
+            }
+
+            &:hover {
+                color: $text-color;
+
+                .dark-mode & {
+                    color: $dark-text;
+                }
+            }
+        }
+
+        .actions-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background-color: $card-bg;
+            border-radius: $border-radius;
+            box-shadow: $shadow-md;
+            z-index: 10;
+            min-width: 120px;
+            animation: fadeIn 0.2s ease;
+
+            .dark-mode & {
+                background-color: $dark-card-bg;
+                border: 1px solid $dark-border;
+            }
+
+            button {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                width: 100%;
+                text-align: left;
+                padding: 0.5rem 0.75rem;
+                font-size: 0.875rem;
+                transition: $transition;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.05);
+
+                    .dark-mode & {
+                        background-color: rgba(255, 255, 255, 0.05);
+                        color: #fff;
+                    }
+                }
+
+                &:first-child {
+                    border-top-left-radius: $border-radius;
+                    border-top-right-radius: $border-radius;
+                }
+
+                &:last-child {
+                    border-bottom-left-radius: $border-radius;
+                    border-bottom-right-radius: $border-radius;
+                }
+            }
+        }
+    }
+
+    .task-content {
+        margin-bottom: 0.75rem;
+
+        .task-title-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+
+            .complete-toggle {
+                margin-top: 0.25rem;
+                color: $text-light;
+                transition: $transition;
+
+                .dark-mode & {
+                    color: $dark-text-secondary;
+                }
+
+                &:hover {
+                    color: $primary-color;
+                }
+
+                .completed-icon {
+                    color: $success-color;
+                }
+            }
+
+            h4 {
+                font-size: 1rem;
+                font-weight: 600;
+                margin: 0;
+                line-height: 1.4;
+
+                &.completed-text {
+                    text-decoration: line-through;
+                    color: $text-light;
+
+                    .dark-mode & {
+                        color: $dark-text-secondary;
+                    }
+                }
+            }
+        }
+
+        .task-description {
+            font-size: 0.875rem;
+            color: $text-light;
+            margin: 0;
+            padding-left: 1.75rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+
+            .dark-mode & {
+                color: $dark-text-secondary;
+            }
+        }
+    }
+
+    .task-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 0.75rem;
+        color: $text-light;
+
+        .dark-mode & {
+            color: $dark-text-secondary;
+        }
+
+        .due-date {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+    }
+
+    // Priority styles
+    &.priority-high {
+        border-left: 3px solid $danger-color;
+    }
+
+    &.priority-medium {
+        border-left: 3px solid $warning-color;
+    }
+
+    &.priority-low {
+        border-left: 3px solid $success-color;
+    }
+}

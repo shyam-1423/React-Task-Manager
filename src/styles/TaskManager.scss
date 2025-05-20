@@ -1,0 +1,251 @@
+@import './App.scss';
+
+.task-manager {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+
+    &.dark-mode {
+        .sidebar {
+            background-color: $dark-card-bg;
+            border-color: $dark-border;
+        }
+
+        .main-content {
+            background-color: $dark-bg;
+        }
+
+        .search-box {
+            background-color: $dark-card-bg;
+            border-color: $dark-border;
+
+            input {
+                color: $dark-text;
+            }
+        }
+
+        .task-stats .stat-card {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+
+        .add-task-btn {
+            background-color: rgba(99, 102, 241, 0.2);
+
+            &:hover {
+                background-color: rgba(99, 102, 241, 0.3);
+            }
+        }
+    }
+
+    .sidebar {
+        background-color: #ffffff;
+        width: 100%;
+        height: 100%;
+        border-right: 1px solid $border-color;
+        display: flex;
+        flex-direction: column;
+        transition: $transition;
+
+        .sidebar-header {
+            padding: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid $border-color;
+
+            .app-brand {
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+
+                .brand-icon {
+                    color: $primary-color;
+                }
+
+                h1 {
+                    font-size: 1.5rem;
+                    font-weight: 700;
+                    margin: 0;
+                    background: linear-gradient(to right, $primary-color, $secondary-color);
+                    -webkit-background-clip: text;
+                    -webkit-text-fill-color: transparent;
+                }
+            }
+
+            .theme-toggle-btn {
+                width: 38px;
+                height: 38px;
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $text-light;
+                background-color: rgba(0, 0, 0, 0.05);
+                transition: $transition;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.1);
+                }
+
+                .dark-mode & {
+                    background-color: rgba(255, 255, 255, 0.1);
+                    color: $dark-text;
+
+                    &:hover {
+                        background-color: rgba(255, 255, 255, 0.15);
+                    }
+                }
+            }
+        }
+
+        .sidebar-content {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            overflow-y: auto;
+
+            .date-display {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                color: $text-light;
+                font-size: 0.9rem;
+
+                .dark-mode & {
+                    color: $dark-text-secondary;
+                }
+            }
+
+            .task-stats {
+                display: flex;
+                gap: 1rem;
+
+                .stat-card {
+                    flex: 1;
+                    background-color: rgba(0, 0, 0, 0.03);
+                    border-radius: $border-radius;
+                    padding: 1rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.75rem;
+                    transition: $transition;
+
+                    &:hover {
+                        transform: translateY(-2px);
+                    }
+
+                    svg {
+                        color: $primary-color;
+                    }
+
+                    .stat-details {
+                        h3 {
+                            font-size: 1.5rem;
+                            font-weight: 700;
+                            margin: 0;
+                        }
+
+                        p {
+                            font-size: 0.875rem;
+                            color: $text-light;
+                            margin: 0;
+
+                            .dark-mode & {
+                                color: $dark-text-secondary;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .add-task-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 0.75rem;
+                background-color: rgba(99, 102, 241, 0.1);
+                color: $primary-color;
+                border-radius: $border-radius;
+                padding: 0.875rem;
+                font-weight: 600;
+                transition: $transition;
+                margin-top: auto;
+
+                &:hover {
+                    background-color: rgba(99, 102, 241, 0.15);
+                    transform: translateY(-2px);
+                }
+
+                svg {
+                    transition: $transition;
+                }
+
+                &:hover svg {
+                    transform: rotate(90deg);
+                }
+            }
+        }
+    }
+
+    .main-content {
+        flex: 1;
+        height: 100%;
+        overflow-y: auto;
+        padding: 1.5rem;
+        background-color: $background-light;
+        transition: $transition;
+
+        .content-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+
+            h2 {
+                font-size: 1.75rem;
+                font-weight: 700;
+            }
+
+            .search-box {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                background-color: #ffffff;
+                border: 1px solid $border-color;
+                border-radius: 50px;
+                padding: 0.5rem 1rem;
+                width: 260px;
+                transition: $transition;
+
+                &:focus-within {
+                    box-shadow: $shadow-sm;
+                    border-color: $primary-color;
+                }
+
+                svg {
+                    color: $text-light;
+                }
+
+                input {
+                    border: none;
+                    background: transparent;
+                    outline: none;
+                    width: 100%;
+
+                    &::placeholder {
+                        color: $text-light;
+                    }
+                }
+            }
+        }
+
+        .task-columns-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            height: calc(100% - 60px);
+        }
+    }
+}
